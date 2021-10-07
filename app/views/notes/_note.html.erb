@@ -1,0 +1,16 @@
+
+<table>
+  <tr>
+    <td><%= note.user.email %> wrote:</td>
+    <td><%= note.text %></td>
+    <% if current_user == note.user %>
+      <td>
+        <form action="<%= note_url(note) %>" method="POST">
+          <input type="hidden" name="_method" value="DELETE">
+          <%= auth_token %>
+          <input type="submit" value="Destroy">
+        </form>
+      </td>
+    <% end %>
+  </tr>
+</table>

@@ -1,0 +1,27 @@
+<h1 class="page_header"><%= @band.name %>'s Page</h1>
+
+<h3 class="sub_header">Albums:</h3>
+<ul>
+  <% @band.albums.each do |album| %>
+    <li>
+      <a href="<%= album_url(album) %>"><%= album.title %></a>
+    </li>
+  <% end %>
+</ul>
+
+<h4 class="sub_header">Links:</h4>
+<ul>
+  <li>
+    <a href="<%= new_band_album_url(@band) %>">Add Album</a>
+  </li>
+  <li>
+    <a href="<%= edit_band_url(@band) %>">Edit Band</a>
+  </li>
+  <li>
+    <form action="<%= band_url(@band) %>" method="POST">
+      <input type="hidden" name="_method" value="DELETE">
+      <%= auth_token %>
+      <input type="submit" value="Delete Band">
+    </form>
+  </li>
+</ul>
